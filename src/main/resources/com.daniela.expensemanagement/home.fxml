@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.daniela.expensemanagement.controllers.HomeController">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="TOP_RIGHT" prefHeight="22.0" prefWidth="1200.0" styleClass="nav">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#minimize" styleClass="button-none">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="MINUS" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#close" styleClass="button-none">
+                     <graphic>
+                        <FontAwesomeIconView fill="#fc0000" glyphName="CLOSE" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Separator prefWidth="1200.0" />
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="blackAnchor" BorderPane.alignment="CENTER">
+         <left>
+            <VBox fx:id="buttonContainer" prefHeight="576.0" prefWidth="250.0" styleClass="greenAnchor" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane prefHeight="112.0" prefWidth="250.0" />
+                  <Button fx:id="incomeBtn" mnemonicParsing="false" onAction="#switchToIncome" prefWidth="250.0" text="Income" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="BANK" size="18" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="button-none" />
+                        <String fx:value="btnSpace" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="budgetBtn" mnemonicParsing="false" onAction="#switchToBudget" prefWidth="250.0" text="Budget" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="MONEY" size="18" />
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <styleClass>
+                        <String fx:value="button-none" />
+                        <String fx:value="btnSpace" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="expenseBtn" mnemonicParsing="false" onAction="#switchToExpense" prefWidth="250.0" text="Expense" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SHOPPING_CART" selectionStart="1" size="18" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="button-none" />
+                        <String fx:value="btnSpace" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="notificationBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#switchToNotification" prefHeight="30.0" prefWidth="250.0" text="Notification" textFill="#f8f8f8">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="BELL" size="18" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="button-none" />
+                        <String fx:value="btnNotification" />
+                     </styleClass>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="statisticBtn" mnemonicParsing="false" onAction="#switchToStatistic" prefWidth="250.0" text="Statistic" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="BAR_CHART_ALT" size="18" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="button-none" />
+                        <String fx:value="btnSpace" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="profileBtn" mnemonicParsing="false" onAction="#switchToProfile" prefWidth="250.0" text="Profile" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="USER_CIRCLE" size="18" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="button-none" />
+                        <String fx:value="btnSpace" />
+                     </styleClass>
+                  </Button>
+               </children></VBox>
+         </left>
+         <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1200.0" styleClass="nav" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="180.0" text="Expense Management" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </HBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="960.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#logout" styleClass="button-none">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="20" />
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

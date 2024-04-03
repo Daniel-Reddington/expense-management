@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="950.0" styleClass="blackAnchor" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.daniela.expensemanagement.controllers.ExpenseController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="89.0" prefWidth="950.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="keywordTextField" alignment="CENTER" onKeyTyped="#filter" prefHeight="25.0" prefWidth="274.0" promptText="Keyword" styleClass="search">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+            <Button mnemonicParsing="false" styleClass="button-none">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="17" />
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="507.0" prefWidth="401.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="333.0" prefWidth="401.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <VBox layoutX="121.0" layoutY="108.0" prefHeight="407.0" prefWidth="401.0" AnchorPane.bottomAnchor="-74.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <GridPane prefHeight="306.0" prefWidth="361.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Motif" textFill="WHITE" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Quantity" textFill="WHITE" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Price" textFill="WHITE" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Currency" textFill="WHITE" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="motifTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="quantityTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="priceTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label text="Expense date" textFill="WHITE" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="expenseDatePicker" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <ChoiceBox fx:id="currencyChoiceBox" prefHeight="25.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label text="Budget category" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="budgetCategory" prefHeight="25.0" prefWidth="190.0" GridPane.columnIndex="1" />
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </GridPane>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="401.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="64.0" styleClass="button-border-color" text="Save">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="expenseTableView" prefHeight="430.0" prefWidth="530.0">
+              <columns>
+                <TableColumn fx:id="category" prefWidth="127.0" text="Budget category" />
+                  <TableColumn fx:id="motif" prefWidth="116.0" text="Motif" />
+                <TableColumn fx:id="price" minWidth="0.0" prefWidth="93.0" text="Price" />
+                  <TableColumn fx:id="currency" prefWidth="87.0" text="Currency" />
+                  <TableColumn fx:id="expenseDate" minWidth="0.0" prefWidth="105.0" text="Created At" />
+              </columns>
+               <VBox.margin>
+                  <Insets right="20.0" top="13.0" />
+               </VBox.margin>
+            </TableView>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
