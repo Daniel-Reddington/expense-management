@@ -3,11 +3,15 @@ package com.daniela.expensemanagement.services.impl;
 import com.daniela.expensemanagement.services.interfaces.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.angus.mail.util.MailConnectException;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.stereotype.Component;
+
+import java.net.ConnectException;
+import java.net.UnknownHostException;
 
 @Component
 @RequiredArgsConstructor
@@ -26,8 +30,9 @@ public class EmailServiceImpl implements EmailService {
 
         try {
             javaMailSender.send(message);
-        }catch (MailException exception){
-            log.info("email exception : {}", exception);
+        }
+        catch (MailException exception){
+            log.info("email exception : {}", exception.getMessage());
         }
 
 

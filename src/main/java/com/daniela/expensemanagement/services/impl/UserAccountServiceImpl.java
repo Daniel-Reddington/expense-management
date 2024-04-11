@@ -1,14 +1,21 @@
 package com.daniela.expensemanagement.services.impl;
 
 import com.daniela.expensemanagement.entities.UserAccount;
+import com.daniela.expensemanagement.model.ResetPasswordResponse;
+import com.daniela.expensemanagement.model.Status;
 import com.daniela.expensemanagement.repositories.UserAccountRepository;
 import com.daniela.expensemanagement.services.interfaces.EmailService;
 import com.daniela.expensemanagement.services.interfaces.UserAccountService;
+import com.daniela.expensemanagement.utils.CheckInternet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.utility.RandomString;
+import org.eclipse.angus.mail.util.MailConnectException;
+import org.springframework.mail.MailException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.net.UnknownHostException;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +26,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     private final UserAccountRepository userAccountRepository;
     private final EmailService emailService;
     private UserAccount userAccount = null;
+    private final CheckInternet checkInternet;
     @Override
     public UserAccount save(UserAccount userAccount) {
         return userAccountRepository.save(userAccount);
@@ -35,12 +43,13 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public boolean sendEmail(String email) {
+    public ResetPasswordResponse sendEmail(String email) {
         UserAccount userByEmail = findByEmail(email);
         String password = RandomString.make(16);
 
 
         if(userByEmail != null){
+
             String message = new StringBuilder()
                     .append("Dear ").append(userByEmail.getUsername()).append(",\n\n")
                     .append("Here is your new password : ").append(password).append(".\n\n")
@@ -50,11 +59,22 @@ public class UserAccountServiceImpl implements UserAccountService {
                     .append("Best regards,\n")
                     .append("The team at [Expense Management]").toString();
 
-            //emailService.sendSimpleMessage(userByEmail.getEmail(), "New Password", message);
-            userByEmail.setPassword(password);
-            return true;
+
+            if(checkInternet.isInternetAvailable()){
+                try{
+                    emailService.sendSimpleMessage(userByEmail.getEmail(), "New Password", message);
+                    userByEmail.setPassword(password);
+                    return new ResetPasswordResponse(Status.SUCCESS, "Mail sending successfully");
+                }catch (MailException | MailConnectException exception){
+                    log.info("mail exception");
+                    return new ResetPasswordResponse(Status.MAIL_ERROR, "Error when sending email");
+                }
+            }else{
+                return new ResetPasswordResponse(Status.INTERNET, "Internet is disable");
+            }
         }
-        return false;
+
+        return new ResetPasswordResponse(Status.MAIL_NOT_FOUND, "Email not found");
     }
 
     @Override

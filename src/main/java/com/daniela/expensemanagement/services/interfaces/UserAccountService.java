@@ -1,6 +1,7 @@
 package com.daniela.expensemanagement.services.interfaces;
 
 import com.daniela.expensemanagement.entities.UserAccount;
+import com.daniela.expensemanagement.model.ResetPasswordResponse;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
 public interface UserAccountService {
@@ -8,7 +9,7 @@ public interface UserAccountService {
     UserAccount findByUsername(String username);
     UserAccount findByEmail(String email);
 
-    boolean sendEmail(String email);
+    ResetPasswordResponse sendEmail(String email);
     UserAccount findByPhoneNumber(String phoneNumber);
     UserAccount getConnectedUser();
     void setConnectedUser(UserAccount userAccount);

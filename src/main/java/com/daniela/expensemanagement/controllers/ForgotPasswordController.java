@@ -2,6 +2,8 @@ package com.daniela.expensemanagement.controllers;
 
 import com.daniela.expensemanagement.ExpenseManagementApplication;
 import com.daniela.expensemanagement.SpringFXMLLoader;
+import com.daniela.expensemanagement.model.ResetPasswordResponse;
+import com.daniela.expensemanagement.model.Status;
 import com.daniela.expensemanagement.services.interfaces.UserAccountService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 @Component
 @RequiredArgsConstructor
@@ -49,12 +52,23 @@ public class ForgotPasswordController {
     }
     @FXML
     void send(ActionEvent event) {
-        boolean isSent = userAccountService.sendEmail(emailOrPhoneNumber.getText());
+        ResetPasswordResponse response = userAccountService.sendEmail(emailOrPhoneNumber.getText());
 
-        if(isSent){
+        if(response.status().equals(Status.SUCCESS)){
             close(event);
-        }else{
+        } else if (response.status().equals(Status.MAIL_NOT_FOUND)) {
+            internetErrorLabel.setText("User not exist!");
             hboxError.setVisible(true);
+            log.info("response mail not found : {}", response);
+        } else if (response.status().equals(Status.MAIL_ERROR)) {
+            internetErrorLabel.setText("Mail not sending");
+            hboxError.setVisible(true);
+            log.info("response mail error : {}", response);
+        } else if (response.status().equals(Status.INTERNET)) {
+            internetErrorLabel.setText("Please check your internet connection");
+            hboxError.setVisible(true);
+            log.info("response internet : {}", response);
         }
+
     }
 }
