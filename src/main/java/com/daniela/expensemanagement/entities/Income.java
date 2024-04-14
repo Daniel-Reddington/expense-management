@@ -39,6 +39,11 @@ public class Income {
     @ToString.Exclude
     private Set<Budget> budgets = new HashSet<>();
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(joinColumns = @JoinColumn(name = "income_id"),
+            inverseJoinColumns = @JoinColumn(name = "loan_Id"))
+    private Set<Loan> loans;
+
 
     @PrePersist
     @PreUpdate
