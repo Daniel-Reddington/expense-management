@@ -25,11 +25,13 @@ public class UserAccount {
     private String username;
     private String password;
     private LocalDateTime createdAt;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "userAccount")
     private List<Income> incomes;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "userAccount")
     private List<Budget> budgets;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "userAccount")
     private List<Expense> expenses;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "userAccount")
+    private List<Loan> loans;
 
 }
