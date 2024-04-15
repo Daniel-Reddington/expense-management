@@ -3,6 +3,7 @@ package com.daniela.expensemanagement.config;
 import com.daniela.expensemanagement.entities.Budget;
 import com.daniela.expensemanagement.entities.Expense;
 import com.daniela.expensemanagement.entities.Income;
+import com.daniela.expensemanagement.entities.Loan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -47,6 +48,16 @@ public class AppConfig {
     @Bean
     public FilteredList<Expense> filteredExpenseList(@Autowired ObservableList<Expense> expenseObservableList) {
         return new FilteredList<>(expenseObservableList);
+    }
+
+    @Bean
+    public ObservableList<Loan> loanObservableList(){
+        return FXCollections.observableArrayList();
+    }
+
+    @Bean
+    public FilteredList<Loan> filteredLoanList(@Autowired ObservableList<Loan> loanObservableList) {
+        return new FilteredList<>(loanObservableList);
     }
 
 

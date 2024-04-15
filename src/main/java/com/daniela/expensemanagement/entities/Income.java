@@ -41,7 +41,7 @@ public class Income {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "income_id"),
-            inverseJoinColumns = @JoinColumn(name = "loan_Id"))
+            inverseJoinColumns = @JoinColumn(name = "loan_id"))
     private Set<Loan> loans;
 
 
