@@ -88,6 +88,21 @@
                         <String fx:value="btnSpace" />
                      </styleClass>
                   </Button>
+                  <Button fx:id="loanBtn" layoutX="10.0" layoutY="222.0" mnemonicParsing="false" onAction="#switchToLoan" prefWidth="250.0" text="Loan" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SHOPPING_CART" selectionStart="1" size="18" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="button-none" />
+                        <String fx:value="btnSpace" />
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
                   <Button fx:id="notificationBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#switchToNotification" prefHeight="30.0" prefWidth="250.0" text="Notification" textFill="#f8f8f8">
                      <font>
                         <Font size="14.0" />
