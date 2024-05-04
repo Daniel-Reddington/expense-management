@@ -101,6 +101,20 @@ public class HomeController implements Initializable, AutoCloseable {
     }
 
     @FXML
+    void switchToLoan(ActionEvent event) {
+        handleButtonClick((Button) event.getSource());
+        try {
+            String url = "/com.daniela.expensemanagement/loan.fxml";
+            fxml = (Parent) fxmlLoader.load(url);
+
+            anchorPane.getChildren().removeAll();
+            anchorPane.getChildren().setAll(fxml);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
     void switchToIncome(ActionEvent event) {
         handleButtonClick((Button) event.getSource());
         try {

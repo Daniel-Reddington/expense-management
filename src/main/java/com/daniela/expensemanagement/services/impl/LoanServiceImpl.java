@@ -2,6 +2,7 @@ package com.daniela.expensemanagement.services.impl;
 
 import com.daniela.expensemanagement.entities.Income;
 import com.daniela.expensemanagement.entities.Loan;
+import com.daniela.expensemanagement.entities.UserAccount;
 import com.daniela.expensemanagement.repositories.LoanRepository;
 import com.daniela.expensemanagement.services.interfaces.IncomeService;
 import com.daniela.expensemanagement.services.interfaces.LoanService;
@@ -10,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,11 +30,23 @@ public class LoanServiceImpl implements LoanService {
         if(income != null && income.getAmount() >= loan.getTotalAmount()){
             income.setAmount(income.getAmount() - loan.getTotalAmount());
 
-            loan.getIncomes().add(income);
+            loan.setIncome(income);
             return loanRepository.save(loan);
 
         }
         return null;
+    }
+
+    @Override
+    public Loan setLoanPay(Loan loan) {
+        loan.setReturnDate(LocalDate.now());
+        loan.setIsReturn(true);
+        Loan savedLoan = loanRepository.save(loan);
+
+        Income income = savedLoan.getIncome();
+        income.setAmount(income.getAmount() + loan.getTotalAmount());
+
+        return savedLoan;
     }
 
     @Override
@@ -43,5 +59,10 @@ public class LoanServiceImpl implements LoanService {
             loanObservableList.add(loan);
         }
         return loanObservableList;
+    }
+
+    @Override
+    public List<Loan> findAllByUserAccount(UserAccount connectedUser) {
+        return loanRepository.findByUserAccount(connectedUser);
     }
 }

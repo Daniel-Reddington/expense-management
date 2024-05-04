@@ -33,15 +33,13 @@ public class Income {
     @ToString.Exclude
     private UserAccount userAccount;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(joinColumns = @JoinColumn(name = "income_id"),
             inverseJoinColumns = @JoinColumn(name = "budget_id"))
     @ToString.Exclude
     private Set<Budget> budgets = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(joinColumns = @JoinColumn(name = "income_id"),
-            inverseJoinColumns = @JoinColumn(name = "loan_id"))
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "income")
     private Set<Loan> loans;
 
 

@@ -22,11 +22,12 @@ public class Loan {
     @Enumerated(EnumType.STRING)
     private Currency currency;
     private LocalDateTime borrowDate;
-    private LocalDate returnDate;
+    private LocalDate previewDate;
     private Boolean isReturn;
+    private LocalDate returnDate;
     @ManyToOne
     @ToString.Exclude
     private UserAccount userAccount;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Income> incomes;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Income income;
 }
